@@ -26,7 +26,7 @@
             </div>
         </div>
         <hr>
-        <div class="row mx-custom d-flex justify-content-between" id="object-view">
+        <div class="row mx-custom d-flex" id="object-view">
                 <!-- Clone Here... -->
         </div>
     </div>
@@ -34,7 +34,15 @@
     <!-- Template -->
     <template id="template-object">
         <div class="object-box pt-2 pb-4">
-            <h4 class="object-type text-white">Exemple</h4>
+            <select name="itemType" class="form-select itemType" id="itemType">
+                <option value="cloak">Cape</option>
+                <option value="outfit">Costume</option>
+                <option value="belt">Ceinture</option>
+                <option value="shoes">Chaussures</option>
+                <option value="mask">Masque</option>
+                <option value="gadget">Gadget</option>
+                <option value="weapon">Arme</option>
+              </select>
             <div class="input-object-box mb-3">
                 <label class="text-white">Force :</label>
                 <input type="text" class="force form-control mx-0">

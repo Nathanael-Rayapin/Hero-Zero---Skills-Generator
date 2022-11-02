@@ -36,6 +36,10 @@ body {
     border-radius: 8px;
 }
 
+.object-box > .itemType {
+    cursor: pointer;
+}
+
 /* Custom Style */
 .mx-custom {
     margin-left: 0px;
