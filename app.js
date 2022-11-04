@@ -6,8 +6,11 @@ const app = {
 
     // Initialization
     init: function () {
-        const btnElem = document.querySelector('#objectNumber + button');
-        btnElem.addEventListener('click', app.retrieveObjectInput);
+        const inputConfirmElem = document.querySelector('#objectNumber + button');
+        inputConfirmElem.addEventListener('click', app.retrieveObjectInput);
+
+        const btnTestElem = document.getElementById('btn-test');
+        btnTestElem.addEventListener('click', app.retrieveObjectValues);
     },
 
     // First Step - Retrieve Object Input
@@ -71,6 +74,42 @@ const app = {
             })
             app.objectView.classList.add('justify-content-between');
         }
+    },
+
+    // Fourth Step - Retrieve Objects Values
+    retrieveObjectValues: function () {
+        let newError = false;
+        if (!app.objectView) {
+            return;
+        }
+
+        if (newError) {
+            newError = false;
+        }
+
+        /* Retrieve all Values */
+        const objectsBox = app.objectView.querySelectorAll('.object-box');
+        objectsBox.forEach((box) => {
+            const itemType = box.querySelector('select').value;
+            const itemStrength = parseInt(box.querySelector('.force').value);
+            const itemBrain = parseInt(box.querySelector('.cerveau').value);
+            const itemCondition = parseInt(box.querySelector('.condition').value);
+            const itemInsight = parseInt(box.querySelector('.intuition').value);
+
+            /* Instancie a new Class Item */
+            const item = new Item(itemType, itemStrength, itemBrain, itemCondition, itemInsight);
+
+            // Watch Key/Value, skip key = 'type'
+            Object.entries(item).forEach(([key, value]) => {
+                if (!(key === 'type') && isNaN(value)) {
+                    console.log("Erreur : Informations Manquantes");
+                    newError = true;
+                }
+            })
+
+            if (newError) return;
+            console.log(item);
+        })
     }
 }
 
