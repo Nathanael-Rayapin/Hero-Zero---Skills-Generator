@@ -29,6 +29,11 @@ body {
     border-radius: 5px;
 }
 
+/* Button Confirm */
+.button-test > button {
+    display: none;
+}
+
 /* Template */
 .object-box {
     width: 210px;
