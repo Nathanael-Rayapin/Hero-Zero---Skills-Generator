@@ -8,7 +8,7 @@ const helpers = {
         }
     },
 
-    // Third Step - Update Objects Positions
+    // Update Objects Positions
     updateObjectPosition: function () {
         if (!app.objectView) {
             return;
@@ -27,6 +27,7 @@ const helpers = {
         }
     },
 
+    // Add or Remove object depending on User response
     addOrRemoveObjectBox: function (value) {
         /* If Boxes doesn't exist, create Box depending on input value*/
         if (!(app?.objectView)) {
@@ -36,10 +37,17 @@ const helpers = {
             return;
         };
 
+        /* If current Boxes exists, backgroundColor back to Default */
+        const backgroundToDefault = app?.objectView.querySelectorAll('.object-box');
+        backgroundToDefault.forEach((box) => {
+            box.style.background = 'linear-gradient(#404447, #23272b)';
+        })
+
         const numberCurrentBox = app?.objectView.querySelectorAll('.object-box').length;
         /* If current Boxes exists and is highter than entered Value, remove */
         if (numberCurrentBox > value) {
-            app?.objectView.querySelectorAll('.object-box:nth-last-child(-n+3)').forEach((box) => {
+            const differenciesValue = numberCurrentBox - value;
+            app?.objectView.querySelectorAll(`.object-box:nth-last-child(-n+${differenciesValue})`).forEach((box) => {
                 box.remove();
             })
             /* Else, add */

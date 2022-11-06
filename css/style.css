@@ -29,6 +29,11 @@ body {
     border-radius: 5px;
 }
 
+/* Result Value */
+/* .object-result-value span {
+    font-size: 18px;
+} */
+
 /* Button Confirm */
 .button-test > button {
     display: none;
@@ -49,4 +54,8 @@ body {
 .mx-custom {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+.border-color-custom {
+    border: 1px solid lime;
 }

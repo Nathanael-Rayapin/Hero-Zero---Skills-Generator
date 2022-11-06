@@ -1,11 +1,13 @@
 const Item = class {
+  id;
   type;
-  strength = 0;
-  condition = 0;
-  brain = 0;
-  insight = 0;
+  strength;
+  condition;
+  brain;
+  insight;
 
-  constructor(type, strength, condition, brain, insight) {
+  constructor(id, type, strength, condition, brain, insight) {
+    this.id = id;
     this.type = type;
     this.strength = strength;
     this.condition = condition;
