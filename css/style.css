@@ -9,8 +9,9 @@ body {
     background-repeat: no-repeat;
 }
 
-/* Object Input Value */
-.inputObjectNumber {
+/* Object Input Value & Object Result Value */
+.inputObjectNumber,
+.object-result-value input {
     width: 250px;
     height: 35px;
     padding-left: .5rem;
@@ -18,21 +19,18 @@ body {
     border: 0;
 }
 
-.inputObjectNumber:focus {
+.inputObjectNumber:focus,
+.object-result-value:focus {
     border: 0;
     outline: 0;
 }
 
-.inputObjectNumber + button {
+.inputObjectNumber + button,
+.object-result-value button {
     height: 35px;
     border: 0;
     border-radius: 5px;
 }
-
-/* Result Value */
-/* .object-result-value span {
-    font-size: 18px;
-} */
 
 /* Button Confirm */
 .button-test > button {
@@ -51,6 +49,10 @@ body {
 }
 
 /* Custom Style */
+.custom-position:nth-of-type(n+8) {
+    justify-content: space-between;
+}
+
 .mx-custom {
     margin-left: 0px;
     margin-right: 0px;

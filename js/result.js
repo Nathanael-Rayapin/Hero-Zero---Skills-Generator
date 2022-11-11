@@ -58,6 +58,7 @@ const result = {
             }
         }
 
+        /* Passed Result to Span (innerText) */
         document.getElementById('resultStrength').innerText = resultStrength;
         document.getElementById('resultCondition').innerText = resultCondition;
         document.getElementById('resultBrain').innerText = resultBrain;
@@ -71,7 +72,7 @@ const result = {
         for (const id of ids) {
             const idSelector = document.querySelector(`#${id}`);
             idSelector.style.background = '#157347';
-        }
+        };
     },
 
     // Factory for Calc Total current Items

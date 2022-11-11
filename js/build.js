@@ -7,11 +7,17 @@ const app = {
 
     // Pre-requisites - Initialization
     init: function () {
+        /* Confirm Object Number */
         const inputConfirmElem = document.querySelector('#objectNumber + button');
         inputConfirmElem.addEventListener('click', app.retrieveObjectInput);
 
+        /* Generate Best Idem */
         app.btnGenerator = document.getElementById('btn-test');
         app.btnGenerator.addEventListener('click', app.retrieveObjectValues);
+
+        /* Confirm Calcul Differences */
+        const objectResultConfirm = document.getElementById('object-result-confirm');
+        objectResultConfirm.addEventListener('click', helpers.calcDifferencesStats);
     },
 
     // First Step - Retrieve Object Input and Implement Design
@@ -92,6 +98,7 @@ const app = {
             newItems.push(item);
         });
 
+        if (newError) return;
         if (newItems.length > 0) {
             app.buildUniqueValues(newItems);
         }
