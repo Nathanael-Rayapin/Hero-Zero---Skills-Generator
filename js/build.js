@@ -15,9 +15,9 @@ const app = {
         app.btnGenerator = document.getElementById('btn-test');
         app.btnGenerator.addEventListener('click', app.retrieveObjectValues);
 
-        /* Confirm Calcul Differences */
-        const objectResultConfirm = document.getElementById('object-result-confirm');
-        objectResultConfirm.addEventListener('click', helpers.calcDifferencesStats);
+        /* Generate Differences Calc */
+        const calcDifferencesElem = document.getElementById('object-result-confirm');
+        calcDifferencesElem.addEventListener('click', helpers.calcDifferencesStats);
     },
 
     // First Step - Retrieve Object Input and Implement Design
@@ -63,6 +63,13 @@ const app = {
         let newError = false;
 
         if (!app.objectView) {
+            return;
+        }
+
+        /* Check if Input are Filled */
+        let checkError = helpers.checkinputFilled();
+        if(checkError === 'ERROR') {
+            console.log("Objects Input Empty");
             return;
         }
 

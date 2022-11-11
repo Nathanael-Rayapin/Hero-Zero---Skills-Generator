@@ -32,8 +32,32 @@ const result = {
 
     // Display the Best Items (Ids)
     retrieveBestItems: function () {
-        const objectResultValue = document.getElementById('object-result-value');
-        objectResultValue.classList.remove('d-none');
+        /* Declare User object values */
+        const strengthByObj = parseInt(document.getElementById('strengthBy').value); 
+        const conditionByObj = parseInt(document.getElementById('conditionBy').value); 
+        const brainByObj = parseInt( document.getElementById('brainBy').value); 
+        const insightByObj = parseInt(document.getElementById('insightBy').value); 
+
+        /* Declare initial array IDS and Greater Objects */
+        const itemsGreater = [];
+
+        /* Compare Item with User Objects */
+        for (const item of result.finalResult) {
+            if (item.Force >= strengthByObj && item.Condition >= conditionByObj && 
+                item.Cerveau >= brainByObj && item.Intuition >= insightByObj) {
+                itemsGreater.push(item);
+            };
+        };
+
+        /* Check if itemsGreater is Empty or Not*/
+        if(!(itemsGreater?.length)) {
+            console.log("No items fit into the requirements");
+            return;
+        }
+
+        /* Compare Item Between Items (If Exists) */
+        const idsSended = [];
+        if(itemsGreater?.length && itemsGreater?.length > 1) {
 
         let total = 0;
         let resultStrength = 0;
@@ -41,12 +65,9 @@ const result = {
         let resultBrain = 0;
         let resultInsight = 0;
 
-        const idsSended = [];
-
-        /* Get total of All compared Itms and display the Best Set */
-        for (const item of result.finalResult) {
+        for (const item of itemsGreater) {
             const newTotal = item.Force + item.Condition + item.Cerveau + item.Intuition;
-            if (newTotal > total) {
+            if(newTotal > total) {
                 total = newTotal;
                 resultStrength = item.Force;
                 resultCondition = item.Condition;
@@ -55,19 +76,25 @@ const result = {
 
                 idsSended.splice(0);
                 idsSended.push(...item.Identifiants);
-            }
+            };
+        };
         }
-
+        
         /* Passed Result to Span (innerText) */
-        document.getElementById('resultStrength').innerText = resultStrength;
-        document.getElementById('resultCondition').innerText = resultCondition;
-        document.getElementById('resultBrain').innerText = resultBrain;
-        document.getElementById('resultInsight').innerText = resultInsight;
+        document.getElementById('resultStrength').innerText = itemsGreater[0].Force || resultStrength;
+        document.getElementById('resultCondition').innerText = itemsGreater[0].Condition || resultCondition;
+        document.getElementById('resultBrain').innerText = itemsGreater[0].Cerveau || resultBrain;
+        document.getElementById('resultInsight').innerText = itemsGreater[0].Intuition || resultInsight;
 
-        console.log(idsSended);
-        result.getObjectBoxColored(idsSended);
+        /* Get Best Item (Final Result) */
+        if(idsSended?.length > 0) {
+            result.getObjectBoxColored(idsSended);
+        } else {
+            result.getObjectBoxColored(itemsGreater[0].Identifiants);
+        }
     },
 
+    // Get Colored Object IDS
     getObjectBoxColored: function (ids) {
         for (const id of ids) {
             const idSelector = document.querySelector(`#${id}`);
